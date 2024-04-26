@@ -37,6 +37,7 @@ impl Solution for Solution0 {
                                 let _ = downloaded_tx.send(Err(e)).await;
                                 break;
                             } else {
+                                //retry using backoff strategy.
                                 println!("retry {repo:?}");
                                 sleep(Duration::from_secs(delay_secs)).await;
                                 delay_secs *= 2;
